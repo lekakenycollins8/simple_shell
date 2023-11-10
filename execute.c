@@ -8,9 +8,11 @@
 
 void handle_child_process (char **args, char *line_value)
 {
+	char *error_message = "./hsh: %d: %s: not found\n";
+
 	if (strchr(args[0], '/') != NULL)
 	{
-		if (execve(args[0], args, NULL) == -1)
+		if (execve(args[0], args, environ) == -1)
 		{
 			perror("execve error");
 			free(line_value);
@@ -21,26 +23,34 @@ void handle_child_process (char **args, char *line_value)
 	else
 	{
 		char *path = _getenv("PATH");
-		char *path_token = strtok(path, PATH_DELIMETER);
+		char *path_copy = custom_strdup(path);
+		char *dir = custom_strtok(path_copy, PATH_DELIMETER);
+		char *resolved_command = NULL;
 
-		while (path_token != NULL)
+		while (dir != NULL)
 		{
-			char dir_path[INPUT_BUFFER_SIZE];
+			size_t dir_len = custom_strlen(dir);
+			size_t command_len = custom_strlen(args[0]);
 
-			strcpy(dir_path, path_token);
-			strcat(dir_path, "/");
-			strcat(dir_path, args[0]);
+			resolved_command = malloc(dir_len + command_len + 2);
+			custom_strcpy(resolved_command, dir);
+			custom_strcat(resolved_command, "/");
+			custom_strcat(resolved_command, args[0]);
 
-			if (access(dir_path, X_OK) != -1)
+			if (access(resolved_command, X_OK) != -1)
 			{
-				execve(dir_path, args, NULL);
+				if (execve(resolved_command, args, environ) != -1)
+				{
+					break;
+				}
 			}
-			path_token = strtok(NULL, PATH_DELIMETER);
+			dir = custom_strtok(NULL, PATH_DELIMETER);
 		}
-		fprintf(stderr, "./hsh: %d: %s: not found\n", 1, args[0]);
-		free(line_value);
-		free(args);
-		exit(127);
+		if (dir == NULL)
+		{
+			fprintf_stdout(error_message, 1, args[0]);
+		}
+		free(path_copy);
 	}
 }
 

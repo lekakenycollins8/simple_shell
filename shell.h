@@ -12,10 +12,10 @@
 #include <stdbool.h>
 #include <fcntl.h>
 #include <string.h>
-
+#include <stdarg.h>
 /* shell macros */
 
-#define PRINTPROMPT(p) write(STDOUT_FILE$, strlen(p))
+#define PRINTPROMPT(p) write(STDOUT_FILENO, p, custom_strlen(p))
 #define INPUT_BUFFER_SIZE 1024
 #define TOKEN_BUFFER_SIZE 100
 #define TOKEN_DELIMETER "\t\r\n\a"

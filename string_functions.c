@@ -18,11 +18,14 @@ char *custom_strcat(char *dest, char *src)
         }
         while (src[j] != '\0')
         {
-                dest[i] = src[j];
-                i++;
+		if (i + j >= INPUT_BUFFER_SIZE - 1)
+		{
+			break;
+		}
+                dest[i + j] = src[j];
                 j++;
         }
-        dest[i] = '\0';
+        dest[i + j] = '\0';
         return (dest);
 }
 
@@ -35,6 +38,10 @@ char *custom_strcat(char *dest, char *src)
 
 int custom_strcmp(const char *str1, const char *str2)
 {
+	if (!str1 || !str2)
+	{
+		return (str1 == str2) ? 0 : (str1 ? 1 : -1);
+	}
         while (*str1 && (*str1 == *str2))
         {
                 str1++;

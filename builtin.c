@@ -1,7 +1,5 @@
 #include "shell.h"
 
-#include "shell.h"
-
 /**
  * custom_atoi - converts ascii to integer
  * @str: string to be converted
@@ -41,6 +39,8 @@ int custom_atoi(char *str, int *valid)
 
 void exit_shell(char *line_value, char **args)
 {
+	char *error_msg = "./hsh: %d: %s: Illegal number: %s\n";
+
         if (args[1] != NULL)
         {
 		int valid;
@@ -48,7 +48,8 @@ void exit_shell(char *line_value, char **args)
 
 		if (strcmp(args[1], "-98") == 0)
 		{
-			fprintf(stderr, "./hsh: %d: %s: Illegal number: %s\n", 1, args[0], args[1]);
+
+			fprintf_stdout(error_msg, 1, args[0], args[1]);
 			free(line_value);
 			free(args);
 			exit(2);
@@ -61,7 +62,7 @@ void exit_shell(char *line_value, char **args)
 		}
 		else
 		{
-			fprintf(stderr, "./hsh: %d: %s: Illegal number: %s\n", 1, args[0], args[1]);
+			fprintf_stdout(error_msg, 1, args[0], args[1]);
 			free(line_value);
 			free(args);
 			exit(2);

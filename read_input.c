@@ -1,6 +1,19 @@
 #include "shell.h"
 
 /**
+ * _putchar - write character to the standard output
+ * @c: chracter to print
+ *
+ * Return: on success 1
+ * on error, -1 returned
+ */
+
+int _putchar(char c)
+{
+	return (write(1, &c, 1));
+}
+
+/**
  * read_input - reads user input
  * Return: array of read strings on success
  */
@@ -9,7 +22,7 @@ char *read_input(void)
 {
 	ssize_t read_status;
 	char *input_buffer = NULL;
-	ssize_t buffer_size = 0;
+	size_t buffer_size = 0;
 
 	read_status = getline(&input_buffer, &buffer_size, stdin);
 	if (read_status == -1)
@@ -18,7 +31,7 @@ char *read_input(void)
 		{
 			_putchar('\n');
 			free(input_buffer);
-			exit(EXIT_STATUS);
+			exit(EXIT_SUCCESS);
 		}
 		else
 		{
@@ -57,7 +70,7 @@ char *read_line(void)
 			free(buffer);
 			exit(EXIT_FAILURE);
 		}
-		if (read_status == 0 || c = EOF || c == '\n')
+		if (read_status == 0 || c == EOF || c == '\n')
 		{
 			buffer[position] = '\0';
 			return (buffer);
@@ -68,9 +81,11 @@ char *read_line(void)
 		if (position >= bufsize)
 		{
 			char *new_buffer;
+			int old_size = bufsize * sizeof(char);
+			int new_size = bufsize * sizeof(char);
 
 			bufsize += INPUT_BUFFER_SIZE;
-			new_buffer = realloc(buffer, bufsize * sizeof(char));
+			new_buffer = _realloc(buffer, old_size, new_size);
 			if (!new_buffer)
 			{
 				perror("Error: reallocation failed");

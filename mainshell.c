@@ -7,7 +7,7 @@
 
 int main(void)
 {
-	char user_input;
+	char *user_input;
 	char **args;
 	bool interactive_shell = isatty(STDIN_FILENO);
 
