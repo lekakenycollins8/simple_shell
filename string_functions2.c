@@ -73,7 +73,7 @@ char *custom_strtok(char *str, const char *delim)
  * @source: string
  * Return: the duplicate
  */
-char *custom_strdup(const char *source)
+char *custom_strdup(char *source)
 {
         size_t length = custom_strlen(source);
         char *duplicate = (char *)malloc(length + 1);

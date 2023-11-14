@@ -6,7 +6,7 @@
  * Return: pointer to string
  */
 
-char *_getenv(const char *name)
+char *_getenv(char *name)
 {
         char **env;
         char *env_value = NULL;

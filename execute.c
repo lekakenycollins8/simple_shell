@@ -67,7 +67,7 @@ void handle_parent_process(pid_t child_pid, char **args, char *line_value)
 
 	do
 	{
-		waitpid(child_pid, &status, 0);
+		waitpid(child_pid, &status, WUNTRACED);
 
 		if (WIFEXITED(status))
 		{

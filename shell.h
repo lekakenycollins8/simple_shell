@@ -23,16 +23,16 @@
 
 /* environment */
 extern char **environ;
-char *_getenv(const char *name);
+char *_getenv(char *name);
 
 /* string custom functions */
 
 int custom_strncmp(const char *str1, const char *str2, size_t n);
-size_t custom_strlen(const char *s);
+size_t custom_strlen(char *s);
 char *custom_strcpy(char *dest, const char *src);
 int custom_strcmp(const char *str1, const char *str2);
 char *custom_strcat(char *dest, char *src);
-char *custom_strdup(const char *source);
+char *custom_strdup(char *source);
 char *custom_strtok(char *str, const char *delim);
 bool is_delimiter(char c, const char *delim);
 

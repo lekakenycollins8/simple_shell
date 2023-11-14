@@ -81,12 +81,16 @@ void exit_shell(char *line_value, char **args)
 
 void execute_env(void)
 {
-        char *env_var = *environ;
+        char **env_var;
 
-        while (env_var)
-        {
-                write(STDOUT_FILENO, env_var, custom_strlen(env_var));
-                write(STDOUT_FILENO, "\n", 1);
-                env_var = *(environ++);
-        }
+	for (env_var = environ; *env_var != NULL; env_var++)
+	{
+		char *current = *env_var;
+		while (*current != '\0')
+		{
+			write(STDOUT_FILENO, current, 1);
+			current++;
+		}
+		write(STDOUT_FILENO, "\n", 1);
+	}
 }

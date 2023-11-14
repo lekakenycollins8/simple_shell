@@ -80,18 +80,18 @@ char *custom_strcpy(char *dest, const char *src)
  * @s: string
  * Return: the length
  */
-size_t custom_strlen(const char *s)
+size_t custom_strlen(char *s)
 {
-        int longi = 0;
+        int length;
 
-        while (*s != '\0')
-
-        {
-                longi++;
-                s++;
-        }
-
-        return (longi);
+	if (s == NULL)
+	{
+		return (0);
+	}
+	for (length = 0; s[length] != '\0'; length++)
+	{
+	}
+	return (length);
 }
 
 /**
