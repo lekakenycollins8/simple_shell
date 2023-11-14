@@ -11,7 +11,7 @@ int main(void)
 	char **args;
 	bool interactive_shell = isatty(STDIN_FILENO);
 
-	while(1)
+	while (1)
 	{
 		if (interactive_shell)
 		{

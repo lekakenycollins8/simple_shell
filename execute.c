@@ -6,7 +6,9 @@
  * @line_value: getline value to be freed
  */
 
-void handle_child_process (char **args, char *line_value)
+void handle_child_process(char **args, char *line_value);
+
+void handle_child_process(char **args, char *line_value)
 {
 	char *error_message = "./hsh: %d: %s: not found\n";
 
@@ -65,8 +67,7 @@ void handle_parent_process(pid_t child_pid, char **args, char *line_value)
 {
 	int status;
 
-	do
-	{
+	do {
 		waitpid(child_pid, &status, WUNTRACED);
 
 		if (WIFEXITED(status))
@@ -75,8 +76,7 @@ void handle_parent_process(pid_t child_pid, char **args, char *line_value)
 			free(args);
 			exit(WEXITSTATUS(status));
 		}
-	}
-	while (!WIFEXITED(status) && !WIFSIGNALED(status));
+	} while (!WIFEXITED(status) && !WIFSIGNALED(status));
 }
 
 /**

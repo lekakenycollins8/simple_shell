@@ -10,16 +10,16 @@
 
 void *fill_with_byte(void *array, int byte, unsigned int len)
 {
-        char *ptr = array;
-        unsigned int i = 0;
+	char *ptr = array;
+	unsigned int i = 0;
 
-        while (i < len)
-        {
-                *ptr = byte;
-                ptr++;
-                i++;
-        }
-        return (array);
+	while (i < len)
+	{
+		*ptr = byte;
+		ptr++;
+		i++;
+	}
+	return (array);
 }
 
 /**
@@ -32,13 +32,13 @@ void *fill_with_byte(void *array, int byte, unsigned int len)
 
 char *_memcpy(char *dest, char *src, unsigned int n)
 {
-        unsigned int i;
+	unsigned int i;
 
-        for (i = 0; i < n; i++)
-        {
-                dest[i] = src[i];
-        }
-        return (dest);
+	for (i = 0; i < n; i++)
+	{
+		dest[i] = src[i];
+	}
+	return (dest);
 }
 
 /**
@@ -51,31 +51,30 @@ char *_memcpy(char *dest, char *src, unsigned int n)
 
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
-        void *value;
+	void *value;
 
-        if (new_size == old_size)
-        {
-                return (ptr);
-        }
-        if (new_size == 0 && ptr)
-        {
-                free(ptr);
-                return (NULL);
-        }
-        value = malloc(new_size);
-
-        if (value == NULL)
-        {
-                return (NULL);
-        }
-        if (ptr == NULL)
-        {
-                fill_with_byte(value, '\0', new_size);
-        }
-        else
-        {
-                _memcpy(value, ptr, old_size);
-        }
-        free(ptr);
-        return (value);
+	if (new_size == old_size)
+	{
+		return (ptr);
+	}
+	if (new_size == 0 && ptr)
+	{
+		free(ptr);
+		return (NULL);
+	}
+	value = malloc(new_size);
+	if (value == NULL)
+	{
+		return (NULL);
+	}
+	if (ptr == NULL)
+	{
+		fill_with_byte(value, '\0', new_size);
+	}
+	else
+	{
+		_memcpy(value, ptr, old_size);
+	}
+	free(ptr);
+	return (value);
 }

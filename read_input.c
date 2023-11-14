@@ -2,7 +2,7 @@
 
 /**
  * _putchar - write character to the standard output
- * @c: chracter to print
+ * @c: character to print
  *
  * Return: on success 1
  * on error, -1 returned
@@ -37,7 +37,7 @@ char *read_input(void)
 		{
 			free(input_buffer);
 			perror("Error: getline failed");
-			exit (EXIT_FAILURE);
+			exit(EXIT_FAILURE);
 		}
 	}
 	return (input_buffer);
@@ -47,6 +47,7 @@ char *read_input(void)
  * read_line - Reads lines of input character by character
  * Return: pointer to a string input
  */
+char *read_line(void);
 
 char *read_line(void)
 {
@@ -58,7 +59,7 @@ char *read_line(void)
 	if (!buffer)
 	{
 		perror("Error: memory allocation failed");
-		exit (EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
 	while (1)
 	{

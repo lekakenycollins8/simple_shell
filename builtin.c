@@ -1,10 +1,10 @@
 #include "shell.h"
 
 /**
- * custom_atoi - converts ascii to integer
+ * custom_atoi - converts ASCII to integer
  * @str: string to be converted
- * @valid: 
- * Return converted string
+ * @valid: pointer indicating validity of conversion
+ * Return: Returns the converted integer value.
  */
 
 int custom_atoi(char *str, int *valid)
@@ -33,7 +33,7 @@ int custom_atoi(char *str, int *valid)
 
 /**
  * exit_shell - Exits the shell environment
- * @line: user input
+ * @line_value: user input
  * @args: argument vecor
  */
 
@@ -41,10 +41,10 @@ void exit_shell(char *line_value, char **args)
 {
 	char *error_msg = "./hsh: %d: %s: Illegal number: %s\n";
 
-        if (args[1] != NULL)
-        {
+	if (args[1] != NULL)
+	{
 		int valid;
-                int exit_status = custom_atoi(args[1], &valid);
+		int exit_status = custom_atoi(args[1], &valid);
 
 		if (strcmp(args[1], "-98") == 0)
 		{
@@ -81,11 +81,12 @@ void exit_shell(char *line_value, char **args)
 
 void execute_env(void)
 {
-        char **env_var;
+	char **env_var;
 
 	for (env_var = environ; *env_var != NULL; env_var++)
 	{
 		char *current = *env_var;
+
 		while (*current != '\0')
 		{
 			write(STDOUT_FILENO, current, 1);

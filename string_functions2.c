@@ -9,15 +9,15 @@
 
 bool is_delimiter(char c, const char *delim)
 {
-        while (*delim != '\0')
-        {
-                if (*delim == c)
-                {
-                        return (true);
-                }
-                delim++;
-        }
-        return (false);
+	while (*delim != '\0')
+	{
+		if (*delim == c)
+		{
+			return (true);
+		}
+		delim++;
+	}
+	return (false);
 }
 /**
  * custom_strtok - tokenizes a string
@@ -27,43 +27,41 @@ bool is_delimiter(char c, const char *delim)
  */
 char *custom_strtok(char *str, const char *delim)
 {
-        unsigned int i;
-        static char *token_start;
-        static char *next_token;
+	unsigned int i;
+	static char *token_start;
+	static char *next_token;
 
-        if (str != NULL)
-                next_token = str;
-        token_start = next_token;
-
-        if (token_start == NULL)
-                return (NULL);
-        for (i = 0; token_start[i] != '\0'; i++)
-        {
-                if (!is_delimiter(token_start[i], delim))
-                        break;
-        }
-        if (token_start[i] == '\0')
-        {
-                next_token = NULL;
-                return (NULL);
-        }
-        next_token = token_start + i;
-
-        for (i = 0; next_token[i] != '\0'; i++)
-        {
-                if (is_delimiter(next_token[i], delim))
-                        break;
-        }
-        if (next_token[i] == '\0')
-                next_token = NULL;
-        else
-        {
-                next_token[i] = '\0';
-                next_token = next_token + i + 1;
-                if (*next_token == '\0')
-                        next_token = NULL;
-        }
-        return (token_start);
+	if (str != NULL)
+		next_token = str;
+	token_start = next_token;
+	if (token_start == NULL)
+		return (NULL);
+	for (i = 0; token_start[i] != '\0'; i++)
+	{
+		if (!is_delimiter(token_start[i], delim))
+			break;
+	}
+	if (token_start[i] == '\0')
+	{
+		next_token = NULL;
+		return (NULL);
+	}
+	next_token = token_start + i;
+	for (i = 0; next_token[i] != '\0'; i++)
+	{
+		if (is_delimiter(next_token[i], delim))
+			break;
+	}
+	if (next_token[i] == '\0')
+		next_token = NULL;
+	else
+	{
+		next_token[i] = '\0';
+		next_token = next_token + i + 1;
+		if (*next_token == '\0')
+			next_token = NULL;
+	}
+	return (token_start);
 }
 
 
@@ -75,17 +73,16 @@ char *custom_strtok(char *str, const char *delim)
  */
 char *custom_strdup(char *source)
 {
-        size_t length = custom_strlen(source);
-        char *duplicate = (char *)malloc(length + 1);
+	size_t length = custom_strlen(source);
+	char *duplicate = (char *)malloc(length + 1);
 
-        if (source == NULL)
-        {
-                return (NULL);
-        }
-        if (duplicate != NULL)
-        {
-                custom_strcpy(duplicate, source);
-        }
-        return (duplicate);
+	if (source == NULL)
+	{
+		return (NULL);
+	}
+	if (duplicate != NULL)
+	{
+		custom_strcpy(duplicate, source);
+	}
+	return (duplicate);
 }
-
