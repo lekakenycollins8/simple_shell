@@ -13,6 +13,7 @@
 #include <fcntl.h>
 #include <string.h>
 #include <stdarg.h>
+
 /* shell macros */
 
 #define PRINTPROMPT(p) write(STDOUT_FILENO, p, custom_strlen(p))
@@ -40,6 +41,7 @@ bool is_delimiter(char c, const char *delim);
 char *read_input(void);
 char *read_line(void);
 char **split_line(char *line);
+int _putchar(char c);
 
 /* functions that handles shell execute */
 

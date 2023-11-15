@@ -46,7 +46,7 @@ void exit_shell(char *line_value, char **args)
 		int valid;
 		int exit_status = custom_atoi(args[1], &valid);
 
-		if (strcmp(args[1], "-98") == 0)
+		if (custom_strcmp(args[1], "-98") == 0)
 		{
 
 			fprintf_stdout(error_msg, 1, args[0], args[1]);

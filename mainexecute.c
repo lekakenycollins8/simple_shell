@@ -3,7 +3,7 @@
 /**
  * process_command -handles builtin commands and executes shell
  * @args: command line arguments
- * @line_value: getline to be freed
+ * @line_value: input value to be freed
  */
 
 void process_command(char **args, char *line_value)

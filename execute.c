@@ -3,7 +3,7 @@
 /**
  * handle_child_process - Run the command in child process
  * @args: command line arguments to run
- * @line_value: getline value to be freed
+ * @line_value: input value to be freed
  */
 
 void handle_child_process(char **args, char *line_value);
@@ -60,7 +60,7 @@ void handle_child_process(char **args, char *line_value)
  * handle_parent_process - handles parent process and waits for child process
  * @child_pid: process ID of child
  * @args: command line arguments
- * @line_value: getline value to be freed
+ * @line_value: input value to be freed
  */
 
 void handle_parent_process(pid_t child_pid, char **args, char *line_value)
@@ -82,7 +82,7 @@ void handle_parent_process(pid_t child_pid, char **args, char *line_value)
 /**
  * execute_command - Run the specified command and manage exit status
  * @args: command line arguments
- * @line_value: getline to be freed
+ * @line_value: input value to be freed
  */
 
 void execute_command(char **args, char *line_value)
