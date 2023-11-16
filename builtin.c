@@ -71,7 +71,7 @@ void exit_shell(char *line_value, char **args)
 	{
 		free(line_value);
 		free(args);
-		exit (0);
+		exit(0);
 	}
 }
 /**
