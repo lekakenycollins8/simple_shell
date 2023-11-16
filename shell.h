@@ -45,7 +45,7 @@ int _putchar(char c);
 
 /* functions that handles shell execute */
 
-void handle_child_process (char **args, char *line_value);
+void handle_child_process(char **args, char *line_value);
 void handle_parent_process(pid_t child_pid, char **args, char *line_value);
 void execute_command(char **args, char *line_value);
 void process_command(char **args, char *line_value);

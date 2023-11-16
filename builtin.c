@@ -43,36 +43,35 @@ void exit_shell(char *line_value, char **args)
 
 	if (args[1] != NULL)
 	{
-		int valid;
-		int exit_status = custom_atoi(args[1], &valid);
-
-		if (custom_strcmp(args[1], "-98") == 0)
+		if (args[2] != NULL)
 		{
-
-			fprintf_stdout(error_msg, 1, args[0], args[1]);
+			fprintf_stdout("./hsh: %d: %s: too many arguments\n", 1, args[0]);
 			free(line_value);
 			free(args);
 			exit(2);
 		}
-		if (valid)
+		if (args[1] != NULL)
 		{
+			int valid;
+			int exit_status = custom_atoi(args[1], &valid);
+
+			if (!valid)
+			{
+				fprintf_stdout(error_msg, 1, args[0], args[1]);
+				free(line_value);
+				free(args);
+				exit(2);
+			}
 			free(line_value);
 			free(args);
 			exit(exit_status);
-		}
-		else
-		{
-			fprintf_stdout(error_msg, 1, args[0], args[1]);
-			free(line_value);
-			free(args);
-			exit(2);
 		}
 	}
 	else
 	{
 		free(line_value);
 		free(args);
-		exit(0);
+		exit (0);
 	}
 }
 /**
